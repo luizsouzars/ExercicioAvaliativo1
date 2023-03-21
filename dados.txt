@@ -1,0 +1,40 @@
+9786556901282
+Estrutura de dados em Java
+2021
+9781119851196
+Concepts and semantics of programming languages 2: modular and object-oriented constructs with Ocaml, Python, C++, Ada and Java
+2021
+9786556901282
+Object Oriented Programming: advanced topics
+2023
+9786556900216
+Integracao de aplicacoes
+2020
+-1
+111
+Thiago Nascimento Rodrigues
+9786556901282
+222
+Thérèse Hardin
+9781119851196
+333
+Mathieu Jaume
+9781119851196
+444
+Francois Pessaux
+9781119851196
+222
+Marcel Trudeau
+9781119851196
+555
+Véronique Donzeau-Gouge
+9781119851196
+-1
+111
+9786556900216
+111
+9786556901282
+-1
+444
+9781119851196
+2021
