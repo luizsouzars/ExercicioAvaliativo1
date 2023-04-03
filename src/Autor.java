@@ -5,10 +5,9 @@ public class Autor {
 
     private Livro[] livros; //Coleção de livros de um autor (array)
     private final int MAX = 100; //Quantidade máxima de de livros para um autor
-    private int qntAutores; //Quantidade de autores cadastrados
     private int qntLivros; //Quantidade de livros de um autor
     
-    //Contrutor
+    //Construtor
     public Autor(int codigo, String nome) {
         this.codigo = codigo;
         this.nome = nome;
@@ -30,6 +29,16 @@ public class Autor {
     public Livro[] pesquisaLivro(){
         return livros;
     }
+
+    public int getCodigo(){
+        return codigo;
+    }
     
-    
+    public String geraDescricao(){
+        String descricao = "";
+        descricao += "Código: "+codigo+"\n";
+        descricao += "Nome do Autor: "+nome+"\n";
+        descricao += "Autor de "+qntLivros+" Livros.";
+        return descricao;
+    }
 }

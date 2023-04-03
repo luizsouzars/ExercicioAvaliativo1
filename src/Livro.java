@@ -1,12 +1,14 @@
 // Imports
 
 public class Livro {
+
     private String isbn;
     private String titulo;
     private int ano;
+
     private Autor[] autores; //Coleção de Autores (array)
-    private final int MAX = 100; //Quantidade máxima de autores
-    private int qntLivros; //Quantidade de livros cadastrados
+    private final int MAX = 100; //Quantidade máxima de autores para um livro
+    private int qntAutores; //Quantidade de autores
     
     //Construtor
     public Livro(String isbn, String titulo, int ano){
@@ -17,13 +19,34 @@ public class Livro {
     }
 
     public boolean adicionaAutor(Autor autor){
-        if(qntLivros < MAX){
-            autores[qntLivros] = autor;
-            qntLivros++;
+        if(qntAutores < MAX){
+            autores[qntAutores] = autor;
+            qntAutores++;
             return true;
         }
         else{
             return false;
         }
     }
+
+    public String getIsbn(){
+        return isbn;
+    }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public int getAno() {
+        return ano;
+    }
+
+    public Autor[] getAutores() {
+        return autores;
+    }
+
+    public int getQntAutores() {
+        return qntAutores;
+    }
+
 }

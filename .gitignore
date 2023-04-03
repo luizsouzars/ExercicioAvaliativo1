@@ -1,6 +1,7 @@
 .gitignore
 /POO-ExercAval1-2023-1.pdf
 *.class
+dados.txt
 entrada.txt
 saida.txt
 *.asta
