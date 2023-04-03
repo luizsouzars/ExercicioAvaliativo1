@@ -1,1 +1,7 @@
+.gitignore
 /POO-ExercAval1-2023-1.pdf
+*.class
+entrada.txt
+saida.txt
+*.asta
+*.asta.lock
