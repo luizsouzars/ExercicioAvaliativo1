@@ -41,6 +41,7 @@ public class ACMEPublishing {
         mostraLivrosAutor(); //PASSO 6: MOSTRA OS LIVROS DE UM DETERMINADO AUTOR
         mostraAutoresLivro(); //PASSO 7: MOSTRA OS AUTORES DE UM LIVRO
         livrosMaisDeUmAutor(); //PASSO 8: MOSTRA OS LIVROS COM MAIS DE UM AUTOR
+        autoresMaisDeUmLivro(); //PASSO 9: MOSTRA OS AUTORES COM MAIS DE UM LIVRO
 
     }
 
@@ -106,7 +107,7 @@ public class ACMEPublishing {
                 Livro livro = biblioteca.pesquisaLivro(isbn);
                 String titulo = livro.getTitulo();
                 int ano = livro.getAno();
-                if (grupo.addLivro(codigoAutor, livro)){
+                if (autor.adicionaLivro(livro) && livro.adicionaAutor(autor)){
                     System.out.println(5+";"+codigoAutor+";"+nome+";"+isbn+";"+titulo+";"+ano);
                 }
             }
@@ -158,4 +159,26 @@ public class ACMEPublishing {
             }
         }
     }
+
+    public void autoresMaisDeUmLivro(){
+        Autor[] autores = grupo.getAutores();
+        int qntAutor = grupo.getQntAutores();
+
+        for (int i=0;i<qntAutor;i++){
+            Autor autor = autores[i];
+            int qntLivro = autor.getQntLivros();
+            if(qntLivro > 1){
+                String nome = autor.getNomeAutor();
+                String txt = "9;"+nome;
+
+                Livro[] livros = autor.pesquisaLivros();
+                for(int j=0;j<qntLivro;j++){
+                    String isbn = livros[j].getIsbn();
+                    txt += ";"+isbn;
+                }
+                System.out.println(txt);
+            }
+        }
+    }
+
 } //Final classe ACMEPublishing

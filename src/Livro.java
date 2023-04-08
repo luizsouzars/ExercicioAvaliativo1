@@ -19,6 +19,11 @@ public class Livro {
     }
 
     public boolean adicionaAutor(Autor autor){
+        for (int i=0;i<qntAutores;i++){
+            if(autor.getCodigo() == autores[i].getCodigo()){
+                return false;
+            }
+        }
         if(qntAutores < MAX){
             autores[qntAutores] = autor;
             qntAutores++;
