@@ -40,6 +40,7 @@ public class ACMEPublishing {
         addLivroAutor(); //PASSO 5: ADICIONA LIVRO À AUTOR
         mostraLivrosAutor(); //PASSO 6: MOSTRA OS LIVROS DE UM DETERMINADO AUTOR
         mostraAutoresLivro(); //PASSO 7: MOSTRA OS AUTORES DE UM LIVRO
+        livrosMaisDeUmAutor(); //PASSO 8: MOSTRA OS LIVROS COM MAIS DE UM AUTOR
 
     }
 
@@ -147,4 +148,14 @@ public class ACMEPublishing {
         System.out.println(txt);
     }
 
+    public void livrosMaisDeUmAutor(){
+        Livro[] livros = biblioteca.getLivros();
+        int qnt = biblioteca.getQntLivros();
+
+        for (int i=0;i<qnt;i++){
+            if(livros[i].getQntAutores()>1){
+                System.out.println(8+";"+livros[i].getTitulo());
+            }
+        }
+    }
 } //Final classe ACMEPublishing
