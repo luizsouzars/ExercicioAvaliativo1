@@ -88,6 +88,27 @@ public class ACMEPublishing {
     }
     
     public void addLivroAutor(){
-        
+        while (entrada.hasNextLine()){
+            int codigoAutor = entrada.nextInt();
+            entrada.nextLine(); //Apaga buffer após ler int
+            if (codigoAutor != -1){
+                // Busca informações do Autor
+                Autor autor = grupo.pesquisaAutor(codigoAutor);
+                String nome = autor.getNomeAutor();
+                // Busca informações do Livro
+                String isbn = entrada.nextLine();
+                Livro livro = biblioteca.pesquisaLivro(isbn);
+                String titulo = livro.getTitulo();
+                int ano = livro.getAno();
+                if (grupo.addLivro(codigoAutor, livro)){
+                    System.out.println(5+";"+codigoAutor+";"+nome+";"+isbn+";"+titulo+";"+ano);
+                }
+            }
+            else{
+                return;
+            }             
+        }
     }
+
+    
 } //Final classe ACMEPublishing

@@ -34,8 +34,8 @@ public class Autor {
         return codigo;
     }
 
-    public Autor getAutor(){
-        return this;
+    public String getNomeAutor(){
+        return this.nome;
     }
     
     public String geraDescricao(){

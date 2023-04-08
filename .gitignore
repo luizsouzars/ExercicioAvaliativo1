@@ -6,3 +6,5 @@ entrada.txt
 saida.txt
 *.asta
 *.asta.lock
+src/dados_template.txt
+src/template_saida.txt

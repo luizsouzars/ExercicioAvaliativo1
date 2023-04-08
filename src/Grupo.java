@@ -1,12 +1,15 @@
 public class Grupo {
     
     private Autor[] autores;
+    private Livro[] livrosAutor;
     private final int MAX = 100;
     private int qntAutores; //Quantidade de autores cadastrados
+    private int qntLivrosAutor; //Quantidade de livros que um autor possui
 
     // Construtor
     public Grupo() {
         autores = new Autor[MAX];
+        livrosAutor = new Livro[MAX];
     }
 
     public boolean cadastraAutor(Autor autor){
@@ -26,7 +29,7 @@ public class Grupo {
         }
     }
 
-    public Autor pesquisAutor(int codigo){
+    public Autor pesquisaAutor(int codigo){
         for (int i=0; i<qntAutores;i++){
             Autor autor_aux = autores[i];
             if(codigo == autor_aux.getCodigo()){
@@ -38,5 +41,15 @@ public class Grupo {
 
     public int getQntAutores(){
         return qntAutores;
+    }
+
+    public boolean addLivro(int cod_autor, Livro livro){
+        for (int i=0;i<qntLivrosAutor;i++){
+            if (livro.getIsbn().equals(livrosAutor[i].getIsbn())){
+                return false;
+            }
+        }
+        livrosAutor[qntLivrosAutor] = livro;
+        return true;
     }
 }
