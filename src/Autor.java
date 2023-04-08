@@ -15,6 +15,11 @@ public class Autor {
     }
     
     public boolean adicionaLivro(Livro livro){
+        for (int i=0;i<qntLivros;i++){
+            if(livro.getIsbn().equals(livros[i].getIsbn())){
+                return false;
+            }
+        }
         if(qntLivros<MAX){
             livros[qntLivros] = livro;
             qntLivros++;
@@ -26,7 +31,11 @@ public class Autor {
 
     }
 
-    public Livro[] pesquisaLivro(){
+    public int getQntLivros(){
+        return qntLivros;
+    }
+
+    public Livro[] pesquisaLivros(){
         return livros;
     }
 

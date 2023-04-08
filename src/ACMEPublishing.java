@@ -38,6 +38,7 @@ public class ACMEPublishing {
         cadastraAutores(); //PASSO 3: CADASTRA AUTORES
         mostraQntAutores(); //PASSO 4: MOSTRA QNTS AUTORES CADASTRADOS
         addLivroAutor(); //PASSO 5: ADICIONA LIVRO À AUTOR
+        mostraLivrosAutor(); //PASSO 6: MOSTRA OS LIVROS DE UM DETERMINADO AUTOR
 
     }
 
@@ -74,7 +75,10 @@ public class ACMEPublishing {
                 String isbn = entrada.nextLine();
                 Autor autor = new Autor(codigo,nome);
                 if(grupo.cadastraAutor(autor)){
-                    System.out.println(3+";"+codigo+";"+nome+";"+isbn);
+                    Livro livro = biblioteca.pesquisaLivro(isbn);
+                    if(autor.adicionaLivro(livro)){
+                        System.out.println(3+";"+codigo+";"+nome+";"+isbn);
+                    }
                 }
             }
             else{
@@ -110,5 +114,23 @@ public class ACMEPublishing {
         }
     }
 
-    
+    public void mostraLivrosAutor(){
+        int codigoAutor = entrada.nextInt();
+        entrada.nextLine(); //Apaga buffer após ler int
+
+        Autor autor = grupo.pesquisaAutor(codigoAutor);
+        String nomeAutor = autor.getNomeAutor();
+
+        Livro[] livros = autor.pesquisaLivros();
+        int qntLivros = autor.getQntLivros();
+        for (int i=0;i<qntLivros;i++){
+            Livro livro_aux = livros[i];
+            String isbn = livro_aux.getIsbn();
+            String titulo = livro_aux.getTitulo();
+            int ano = livro_aux.getAno();
+            System.out.println(6+";"+codigoAutor+";"+nomeAutor+";"+isbn+";"+titulo+";"+ano);
+        }
+    }
+
+
 } //Final classe ACMEPublishing

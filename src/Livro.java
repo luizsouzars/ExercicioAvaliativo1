@@ -49,13 +49,17 @@ public class Livro {
         return qntAutores;
     }
 
+    public Livro getLivro(){
+        return this;
+    }
+
     public String toString(){
         String aut = "[";
         for (int i=0;i<qntAutores;i++){
             aut += this.autores[i];
         }
         aut += "]";
-        
+
         return "Título: "+this.titulo+"\n"+
                 "isbn: "+this.isbn+"\n"+
                 "Ano: "+this.ano+"\n"+
