@@ -47,11 +47,11 @@ public class Autor {
         return this.nome;
     }
     
-    public String geraDescricao(){
+    public String toString(){
         String descricao = "";
         descricao += "Código: "+codigo+"\n";
         descricao += "Nome do Autor: "+nome+"\n";
-        descricao += "Autor de "+qntLivros+" Livros.";
+        descricao += "Autor de "+qntLivros+" Livro(s).";
         return descricao;
     }
 }

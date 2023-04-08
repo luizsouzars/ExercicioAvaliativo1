@@ -43,7 +43,28 @@ public class ACMEPublishing {
         livrosMaisDeUmAutor(); //PASSO 8: MOSTRA OS LIVROS COM MAIS DE UM AUTOR
         autoresMaisDeUmLivro(); //PASSO 9: MOSTRA OS AUTORES COM MAIS DE UM LIVRO
         mostraLivrosAno(); // PASSO 10: MOSTRA OS LIVROS DE UM DETERMINADO ANO
+        
+        restauraES();
+        int opcao = 0;
+        do {
+            menu(); //PONTO EXTRA
+            System.out.print("Digite a opcao desejada: ");
+            opcao = entrada.nextInt();
+            entrada.nextLine();
+            switch (opcao) {
+                case 0:
+                    break;
+                case 1:
+                    cadastrarAutor();
+                    break;
+                case 2:
+                    mostrarAutoresLivros();
+                    break;
+                default:
+                    System.out.println("Opcao invalida! Redigite.");
+            }
 
+        } while(opcao != 0);
     }
 
     private void cadastraLivro(){
@@ -195,5 +216,110 @@ public class ACMEPublishing {
             }
         }
         
+    }
+
+    public void menu(){
+        System.out.println();
+        System.out.println("=====================================");
+        System.out.println("Menu de opcoes");
+        System.out.println("[1] Cadastrar um novo autor e livro correspondente");
+        System.out.println("[2] Mostrar todos os autores cadastrados e livros correspondentes");
+        System.out.println("[0] Sair do sistema");
+    }
+
+    public void cadastrarAutor(){
+        Autor autor;
+        Livro livro;
+        String isbn;
+        String titulo;
+        int ano;
+        int new_cod = 0;
+
+        System.out.print("Digite o nome do autor: ");
+        String nome = entrada.nextLine();
+        boolean flag = false;
+        do{
+            System.out.print("Digite o código numérico do autor ou em branco para sequencial: ");
+            String cod = entrada.nextLine();
+            if (cod.isEmpty()){
+                int sum = 1;
+                while(new_cod==0){
+                    int idx = grupo.getQntAutores();
+                    Autor[] autores = grupo.getAutores();
+                    new_cod = (autores[idx-1].getCodigo())+sum;
+                    if (grupo.pesquisaAutor(new_cod) != null){
+                        new_cod = 0;
+                        sum++;
+                    }
+                    else{
+                        flag = true;
+                    }
+                }
+            }
+            else{
+                if(grupo.pesquisaAutor(Integer.valueOf(cod))!=null){
+                    System.out.println("Código já utilizado!");
+                }
+                else{
+                    new_cod = Integer.valueOf(cod);
+                    flag = true;
+                }
+            }
+        }while(!flag);
+        autor = new Autor(new_cod, nome);
+
+        boolean flagLivro = false;
+        do{
+            System.out.print("Digite o código isbn do livro: ");
+            isbn = entrada.nextLine();
+            if(biblioteca.pesquisaLivro(isbn)==null){
+                flagLivro = true;
+            }
+
+            System.out.print("Digite o titulo: ");
+            titulo = entrada.nextLine();
+
+            System.out.print("Digite o ano: ");
+            ano = entrada.nextInt();
+            entrada.nextLine();
+
+            if (!flagLivro){
+                System.out.println("Código isbn já utilizado!");
+            }
+            else{
+            }
+        }while(!flagLivro);
+        livro = new Livro(isbn, titulo, ano);
+
+        grupo.cadastraAutor(autor);
+        biblioteca.cadastraLivro(livro);
+        autor.adicionaLivro(livro);
+        livro.adicionaAutor(autor);
+
+    }
+
+    public void mostrarAutoresLivros(){
+        System.out.println("=====================================");
+        Autor[] autores = grupo.getAutores();
+        int qntAutores = grupo.getQntAutores();
+        for (int i=0;i<qntAutores;i++){
+            Autor autor = autores[i];
+            System.out.println(autor);
+            System.out.println();
+            
+            Livro[] livros = autor.pesquisaLivros();
+            int qntLivros = autor.getQntLivros();
+            for (int j=0;j<qntLivros;j++){
+                Livro livro = livros[j];
+                System.out.println(livro.getTitulo());
+                System.out.println();
+            }
+            System.out.println("=====================================");
+        }
+    }
+
+    private void restauraES() {
+        System.setOut(saidaPadrao);
+        entrada = new Scanner(System.in);
     }
 } //Final classe ACMEPublishing
