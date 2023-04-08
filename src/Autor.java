@@ -33,6 +33,10 @@ public class Autor {
     public int getCodigo(){
         return codigo;
     }
+
+    public Autor getAutor(){
+        return this;
+    }
     
     public String geraDescricao(){
         String descricao = "";

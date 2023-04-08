@@ -35,4 +35,8 @@ public class Grupo {
         }
         return null;
     }
+
+    public int getQntAutores(){
+        return qntAutores;
+    }
 }

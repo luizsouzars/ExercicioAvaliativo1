@@ -11,6 +11,7 @@ public class ACMEPublishing {
     private Scanner entrada = null;       // Atributo para entrada de dados
     private Biblioteca biblioteca;
     private Grupo grupo;
+    private PrintStream saidaPadrao = System.out;   // Guarda saida padrao
 
     // Construtor
     public ACMEPublishing(){
@@ -25,12 +26,68 @@ public class ACMEPublishing {
         }
         entrada.useLocale(Locale.ENGLISH);
 
-        biblioteca = new Biblioteca();
         grupo = new Grupo();
     }
 
     public void executa(){
-        System.out.print(entrada);
+        biblioteca = new Biblioteca();
+        grupo = new Grupo();
+
+        cadastraLivro(); //PASSO 1: CADASTRA LIVROS
+        mostraQntLivros(); //PASSO 2: MOSTRA QNTS LIVROS CADASTRADOS
+        cadastraAutores(); //PASSO 3: CADASTRA AUTORES
+        mostraQntAutores(); //PASSO 4: MOSTRA QNTS AUTORES CADASTRADOS
+        addLivroAutor(); //PASSO 5: ADICIONA LIVRO À AUTOR
+
+    }
+
+    private void cadastraLivro(){
+        while (entrada.hasNextLine()){
+            
+            String isbn = entrada.nextLine();
+            if (!isbn.equals("-1")){
+                String titulo = entrada.nextLine();
+                int ano = entrada.nextInt();
+                entrada.nextLine(); //Apaga buffer após ler int
+                Livro livro = new Livro(isbn,titulo,ano);
+                if(biblioteca.cadastraLivro(livro)){
+                    System.out.println(1+";"+isbn+";"+titulo+";"+ano);
+                }
+            }
+            else{
+                return;
+            }
+        }
+    }
+
+    public void mostraQntLivros(){
+        System.out.println(2+";"+biblioteca.getQntLivros());
+    }
+
+    public void cadastraAutores(){
+
+        while (entrada.hasNextLine()){
+            int codigo = entrada.nextInt();
+            entrada.nextLine(); //Apaga buffer após ler int
+            if (codigo != -1){
+                String nome = entrada.nextLine();
+                String isbn = entrada.nextLine();
+                Autor autor = new Autor(codigo,nome);
+                if(grupo.cadastraAutor(autor)){
+                    System.out.println(3+";"+codigo+";"+nome+";"+isbn);
+                }
+            }
+            else{
+                return;
+            }
+        }
+    }
+
+    public void mostraQntAutores(){
+        System.out.println(4+";"+grupo.getQntAutores());
     }
     
-}
+    public void addLivroAutor(){
+        
+    }
+} //Final classe ACMEPublishing
