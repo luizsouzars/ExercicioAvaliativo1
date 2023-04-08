@@ -42,6 +42,7 @@ public class ACMEPublishing {
         mostraAutoresLivro(); //PASSO 7: MOSTRA OS AUTORES DE UM LIVRO
         livrosMaisDeUmAutor(); //PASSO 8: MOSTRA OS LIVROS COM MAIS DE UM AUTOR
         autoresMaisDeUmLivro(); //PASSO 9: MOSTRA OS AUTORES COM MAIS DE UM LIVRO
+        mostraLivrosAno(); // PASSO 10: MOSTRA OS LIVROS DE UM DETERMINADO ANO
 
     }
 
@@ -181,4 +182,18 @@ public class ACMEPublishing {
         }
     }
 
+    public void mostraLivrosAno(){
+        int ano = entrada.nextInt();
+        entrada.nextLine(); //Apaga buffer após ler int
+        int qntLivros = biblioteca.getQntLivrosAno(ano);
+        if (qntLivros>=1){
+            Livro[] livros = biblioteca.pesquisaLivro(ano);
+            for (int i=0;i<qntLivros;i++){
+                String isbn = livros[i].getIsbn();
+                String titulo = livros[i].getTitulo();
+                System.out.println(10+";"+isbn+";"+titulo+";"+ano);
+            }
+        }
+        
+    }
 } //Final classe ACMEPublishing

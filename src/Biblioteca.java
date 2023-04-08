@@ -53,12 +53,24 @@ public class Biblioteca {
                 qntLivrosAno++;
             }
         }
-        if (qntLivrosAno>0){
+        if (qntLivrosAno>=1){
             return livros_ano;
         }
         else{
             return null;
         }
+    }
+
+    public int getQntLivrosAno(int ano){
+        livros_ano = new Livro[MAX];
+        for (int i=0;i<qntLivros;i++){
+            Livro livro_aux = livros[i];
+            if (ano == livro_aux.getAno()){
+                livros_ano[i] = livro_aux;
+                qntLivrosAno++;
+            }
+        }
+        return qntLivrosAno; 
     }
 
     public Livro[] getLivros() {
